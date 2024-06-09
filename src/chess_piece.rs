@@ -14,7 +14,30 @@ pub enum PieceType {
     Pawn,
 }
 
-fn get_symbol(color: Color, piece: PieceType) -> char {
+pub struct Piece {
+    color: Color,
+    piece_type: PieceType,
+    icon: char,
+}
+
+impl Piece {
+    pub fn new(color: Color, piece_type: PieceType) -> Self {
+        let icon = get_symbol(&color, &piece_type);
+        Self {
+            color,
+            piece_type,
+            icon,
+        }
+    }
+}
+
+impl std::fmt::Display for Piece {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "{}", self.icon)
+    }
+}
+
+fn get_symbol(color: &Color, piece: &PieceType) -> char {
     match (color, piece) {
         (Color::White, PieceType::King) => KING_WHITE,
         (Color::Black, PieceType::King) => KING_BLACK,
@@ -31,10 +54,10 @@ fn get_symbol(color: Color, piece: PieceType) -> char {
     }
 }
 
-pub fn get_white_piece(piece: PieceType) -> char {
-    get_symbol(Color::White, piece)
+pub fn get_white_piece(piece: PieceType) -> Piece {
+    Piece::new(Color::White, piece)
 }
 
-pub fn get_black_piece(piece: PieceType) -> char {
-    get_symbol(Color::Black, piece)
+pub fn get_black_piece(piece: PieceType) -> Piece {
+    Piece::new(Color::Black, piece)
 }
