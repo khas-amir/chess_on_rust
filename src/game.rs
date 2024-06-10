@@ -11,7 +11,9 @@ impl Game {
         }
     }
 
-    pub fn start(&self) {
+    pub fn start(&mut self) {
+        // example fo moving
+        self.board.move_piece((0, 0), (3, 0));
         println!("{}", self.board);
     }
 }

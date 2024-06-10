@@ -52,6 +52,12 @@ impl Board {
         println!("  +---+---+---+---+---+---+---+---+");
         println!("    A   B   C   D   E   F   G   H");
     }
+
+    pub fn move_piece(&mut self, from: (usize, usize), to: (usize, usize)) {
+        let from_index = from.0 * 8 + from.1;
+        let to_index = to.0 * 8 + to.1;
+        self.squares.swap(from_index, to_index);
+    }
 }
 
 impl Display for Board {
