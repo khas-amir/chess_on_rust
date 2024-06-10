@@ -37,20 +37,25 @@ impl Board {
         Square::new(piece)
     }
 
-    fn draw(&self) {
-        println!("    A   B   C   D   E   F   G   H");
+    pub fn draw(&self) -> String {
+        let mut result = String::new();
+        result += "    A   B   C   D   E   F   G   H\n";
         for i in 0..8 {
-            println!("  +---+---+---+---+---+---+---+---+");
-            print!("{} |", 8 - i);
+            result += "  +---+---+---+---+---+---+---+---+\n";
+            let number = 8 - i;
+            result += format!("{} |", number).as_str();
             for j in 0..8 {
                 let index = i * 8 + j;
-                print!("{}", self.squares[index]);
+                let square_str = self.squares[index].to_string();
+                let square_str = format!(" {} |", square_str);
+                result += &square_str;
             }
-            print!(" {}", 8 - i);
-            println!();
+            result += format!(" {}", number).as_str();
+            result.push('\n')
         }
-        println!("  +---+---+---+---+---+---+---+---+");
-        println!("    A   B   C   D   E   F   G   H");
+        result += "  +---+---+---+---+---+---+---+---+\n";
+        result += "    A   B   C   D   E   F   G   H\n";
+        result
     }
 
     pub fn move_piece(&mut self, from: (usize, usize), to: (usize, usize)) {
@@ -61,8 +66,7 @@ impl Board {
 }
 
 impl Display for Board {
-    fn fmt(&self, _: &mut Formatter<'_>) -> std::fmt::Result {
-        self.draw();
-        Ok(())
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.draw())
     }
 }

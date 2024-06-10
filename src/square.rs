@@ -10,17 +10,16 @@ impl Square {
         Self { piece }
     }
 
-    fn draw(&self) {
+    pub fn draw(&self) -> String {
         match &self.piece {
-            Some(piece) => print!(" {} |", piece),
-            None => print!("   |"),
+            Some(piece) => format!("{piece}"),
+            None => " ".to_string(),
         }
     }
 }
 
 impl Display for Square {
-    fn fmt(&self, _: &mut Formatter<'_>) -> std::fmt::Result {
-        self.draw();
-        Ok(())
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.draw())
     }
 }
