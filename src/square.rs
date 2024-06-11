@@ -2,7 +2,7 @@ use crate::chess_piece::Piece;
 use std::fmt::{Display, Formatter};
 
 pub struct Square {
-    piece: Option<Piece>,
+    pub piece: Option<Piece>,
 }
 
 impl Square {
@@ -21,5 +21,24 @@ impl Square {
 impl Display for Square {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.draw())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+    use crate::chess_piece::get_black_piece;
+    use crate::chess_piece::PieceType::*;
+
+    #[test]
+    fn test_display() {
+        let square = Square { piece: None };
+        assert_eq!(square.draw(), " ");
+
+        let square = Square {
+            piece: Some(get_black_piece(Pawn)),
+        };
+        assert_eq!(square.draw(), "♟");
     }
 }
