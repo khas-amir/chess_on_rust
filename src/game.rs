@@ -11,6 +11,21 @@ impl Game {
         }
     }
 
+    pub fn parse_str(str: &str) -> (usize, usize) {
+        let v: Vec<&str> = str.trim().split(',').collect();
+        let first = match v[0].parse::<usize>() {
+            Ok(x) => x,
+            Err(_) => panic!("Invalid first number"),
+        };
+
+        let second = match v[1].parse::<usize>() {
+            Ok(x) => x,
+            Err(_) => panic!("Invalid second number"),
+        };
+
+        (first, second)
+    }
+
     pub fn input_from_user() -> ((usize, usize), (usize, usize)) {
         println!("What piece do you want to move? (x,y) (where x is the row, and y is the column)");
         let mut from_raw = String::new();
@@ -24,17 +39,8 @@ impl Game {
             .read_line(&mut to_raw)
             .expect("Failed to read line");
 
-        let v_from: Vec<&str> = from_raw.trim().split(',').collect();
-        let from = (
-            v_from[0].parse::<usize>().unwrap(),
-            v_from[1].parse::<usize>().unwrap(),
-        );
-
-        let v_to: Vec<&str> = to_raw.trim().split(',').collect();
-        let to = (
-            v_to[0].parse::<usize>().unwrap(),
-            v_to[1].parse::<usize>().unwrap(),
-        );
+        let from = Self::parse_str(&from_raw);
+        let to = Self::parse_str(&to_raw);
         (from, to)
     }
 
