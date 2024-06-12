@@ -1,4 +1,4 @@
-use crate::chess_piece::Piece;
+use crate::piece::Piece;
 use std::fmt::{Display, Formatter};
 
 pub struct Square {
@@ -28,8 +28,8 @@ impl Display for Square {
 mod tests {
 
     use super::*;
-    use crate::chess_piece::get_black_piece;
-    use crate::chess_piece::PieceType::*;
+    use crate::piece::get_black_piece;
+    use crate::piece::PieceType::*;
 
     #[test]
     fn test_display() {

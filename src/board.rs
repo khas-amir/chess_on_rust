@@ -1,4 +1,4 @@
-use crate::chess_piece::{get_black_piece, get_white_piece, PieceType};
+use crate::piece::{get_black_piece, get_white_piece, PieceType};
 use crate::square::Square;
 use std::fmt::{Display, Formatter};
 
@@ -146,7 +146,7 @@ mod tests {
 
         board.move_piece((y_to, x_to), (y_from, x_from));
         let expected = String::from(
-        "    A   B   C   D   E   F   G   H
+            "    A   B   C   D   E   F   G   H
   +---+---+---+---+---+---+---+---+
 8 | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ | 8
   +---+---+---+---+---+---+---+---+

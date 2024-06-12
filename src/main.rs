@@ -1,7 +1,7 @@
 mod board;
-mod chess_piece;
 mod constants;
 mod game;
+mod piece;
 mod square;
 use game::Game;
 
