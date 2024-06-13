@@ -17,8 +17,8 @@ pub enum PieceType {
 }
 
 pub struct Piece {
-    color: Color,
-    piece_type: PieceType,
+    pub color: Color,
+    pub piece_type: PieceType,
     icon: char,
 }
 
