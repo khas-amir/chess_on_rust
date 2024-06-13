@@ -1,6 +1,7 @@
 mod board;
 mod constants;
 mod game;
+mod move_logic;
 mod piece;
 mod square;
 use game::Game;
