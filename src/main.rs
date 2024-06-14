@@ -1,9 +1,10 @@
 mod board;
 mod constants;
 mod game;
-mod move_logic;
+mod moves;
 mod piece;
 mod square;
+mod utils;
 use game::Game;
 
 fn main() {
