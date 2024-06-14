@@ -74,18 +74,16 @@ pub fn get_pawn_moves(index: usize, board: &Board) -> Vec<usize> {
                 let new_x = x as i8 + dx;
                 let new_y = y as i8 + dy;
 
-                if is_valid_move(new_x, new_y, board, &current.color) {
-                    let new_index = coords_to_index(new_x as usize, new_y as usize);
-                    if board.squares[new_index].piece.is_none() {
-                        v.push(new_index);
-                    }
-
-                    if board.squares[new_index].piece.is_some() {
-                        break;
-                    }
-                } else {
+                if !is_valid_move(new_x, new_y, board, &current.color) {
                     break;
                 }
+
+                let new_index = coords_to_index(new_x as usize, new_y as usize);
+                if board.squares[new_index].piece.is_some() {
+                    break;
+                }
+
+                v.push(new_index);
             }
             for (dx, dy) in moves_to_enemy {
                 let new_x = x as i8 + dx;
