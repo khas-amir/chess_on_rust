@@ -13,6 +13,12 @@ impl Board {
         }
     }
 
+    pub fn empty() -> Self {
+        Self {
+            squares: (0..64).map(|_| Square::new(None)).collect(),
+        }
+    }
+
     fn map_pieces(index: u8) -> Square {
         let x = index % 8;
         let y = index / 8;
@@ -170,5 +176,13 @@ mod tests {
         assert_eq!(board.draw(), expected);
         assert!(board.squares[index_from].piece.is_some());
         assert!(board.squares[index_to].piece.is_none());
+    }
+
+    #[test]
+    fn test_empty_board() {
+        let board = Board::empty();
+        for square in board.squares {
+            assert!(square.piece.is_none())
+        }
     }
 }
