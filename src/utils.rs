@@ -46,3 +46,14 @@ pub fn get_vertical_moves(x: usize, y: usize, to_down: bool) -> Vec<(i8, i8)> {
     }
     moves
 }
+
+pub fn get_diagonal_moves(x: usize, y: usize, to_right: bool, to_down: bool) -> Vec<(i8, i8)> {
+    let mut moves = Vec::new();
+    let range = get_range(x, to_right);
+    let range2 = get_range(y, to_down);
+
+    for (dx, dy) in range.zip(range2) {
+        moves.push((dx as i8, dy as i8));
+    }
+    moves
+}
