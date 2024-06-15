@@ -2,7 +2,6 @@ use std::usize;
 
 use crate::{
     board::Board,
-    moves,
     piece::PieceType,
     utils::{
         coords_to_index, get_diagonal_moves, get_horizontal_moves, get_vertical_moves,

@@ -1,6 +1,5 @@
 use crate::{
     board::Board,
-    moves,
     utils::{index_to_coords, is_valid_move},
 };
 use crate::{piece::PieceType::King, utils::coords_to_index};

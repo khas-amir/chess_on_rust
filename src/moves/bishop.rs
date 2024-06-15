@@ -11,7 +11,7 @@ pub fn get_bishop_moves(index: usize, board: &Board) -> Vec<usize> {
         None => panic!("No piece at index"),
     };
 
-    if (piece.piece_type != PieceType::Bishop) {
+    if piece.piece_type != PieceType::Bishop {
         panic!("Piece is not a bishop");
     }
 
