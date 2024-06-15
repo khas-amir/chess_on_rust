@@ -1,11 +1,4 @@
-mod board;
-mod constants;
-mod game;
-mod moves;
-mod piece;
-mod square;
-mod utils;
-use game::Game;
+use chess::game::Game;
 
 fn main() {
     let mut game = Game::new();
