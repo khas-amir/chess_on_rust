@@ -26,19 +26,22 @@ impl Game {
         (first, second)
     }
 
-    pub fn input_from_user() -> ((usize, usize), (usize, usize)) {
-        println!("What piece do you want to move? (x,y) (where x is the row, and y is the column)");
-        let mut from_raw = String::new();
+    pub fn input_str(msg: &str) -> String {
+        println!("{}", msg);
+        let mut s = String::new();
         std::io::stdin()
-            .read_line(&mut from_raw)
+            .read_line(&mut s)
             .expect("Failed to read line");
+        s
+    }
 
-        println!("Where do you want to move? (x,y) (where x is the row, and y is the column)");
-        let mut to_raw = String::new();
-        std::io::stdin()
-            .read_line(&mut to_raw)
-            .expect("Failed to read line");
-
+    pub fn input_from_to_coord_str() -> ((usize, usize), (usize, usize)) {
+        let from_raw = Self::input_str(
+            "What piece do you want to move? (x,y) (where x is the row, and y is the column)",
+        );
+        let to_raw = Self::input_str(
+            "Where do you want to move? (x,y) (where x is the row, and y is the column)",
+        );
         let from = Self::parse_str(&from_raw);
         let to = Self::parse_str(&to_raw);
         (from, to)
@@ -46,7 +49,7 @@ impl Game {
 
     pub fn start(&mut self) {
         println!("\n{}", self.board);
-        let (from, to) = Self::input_from_user();
+        let (from, to) = Self::input_from_to_coord_str();
         self.board.move_piece(from, to);
         println!("\n{}", self.board);
     }
