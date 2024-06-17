@@ -57,3 +57,72 @@ pub fn get_diagonal_moves(x: usize, y: usize, to_right: bool, to_down: bool) -> 
     }
     moves
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_coords_to_index() {
+        assert_eq!(coords_to_index(0, 0), 0);
+        assert_eq!(coords_to_index(1, 1), 9);
+        assert_eq!(coords_to_index(7, 7), 63);
+    }
+
+    #[test]
+    fn test_index_to_coords() {
+        assert_eq!(index_to_coords(10), (2, 1));
+        assert_eq!(index_to_coords(63), (7, 7));
+        assert_eq!(index_to_coords(0), (0, 0));
+        assert_eq!(index_to_coords(9), (1, 1));
+        assert_eq!(index_to_coords(5), (5, 0));
+    }
+
+    #[test]
+    fn test_get_horizontal_moves_in_top_left_edge() {
+        let moves = get_horizontal_moves(0, 0, true);
+        let expected = vec![(1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0)];
+        assert_eq!(moves, expected);
+    }
+
+    #[test]
+    fn test_get_horizontal_moves_in_top_right_edge() {
+        let moves = get_horizontal_moves(7, 0, false);
+        let expected = vec![(6, 0), (5, 0), (4, 0), (3, 0), (2, 0), (1, 0), (0, 0)];
+        assert_eq!(moves, expected);
+    }
+
+    #[test]
+    fn test_get_horizontal_moves_in_the_middle() {
+        let moves = get_horizontal_moves(3, 3, true);
+        let expected = vec![(4, 3), (5, 3), (6, 3), (7, 3)];
+        assert_eq!(moves, expected);
+    }
+
+    #[test]
+    fn test_get_vertical_moves_in_top_left_edge() {
+        let moves = get_vertical_moves(0, 0, true);
+        let expected = vec![(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7)];
+        assert_eq!(moves, expected);
+    }
+
+    #[test]
+    fn test_get_vertical_moves_in_top_right_edge() {
+        let moves = get_vertical_moves(7, 0, true);
+        let expected = vec![(7, 1), (7, 2), (7, 3), (7, 4), (7, 5), (7, 6), (7, 7)];
+        assert_eq!(moves, expected);
+    }
+
+    #[test]
+    fn test_get_vertical_moves_in_the_middle() {
+        let moves = get_vertical_moves(3, 3, false);
+        let expected = vec![(3, 2), (3, 1), (3, 0)];
+        assert_eq!(moves, expected);
+    }
+
+    #[test]
+    fn test_get_diagonal_moves() {
+        let moves = get_diagonal_moves(0, 0, true, true);
+        let expected = vec![(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7)];
+        assert_eq!(moves, expected);
+    }
+}
