@@ -19,3 +19,9 @@ impl Game {
         self.board.to_string()
     }
 }
+
+impl Default for Game {
+    fn default() -> Self {
+        Self::new()
+    }
+}
